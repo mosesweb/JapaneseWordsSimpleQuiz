@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JapaneseWords</string>
+    <string name="title_activity_test">testActivity</string>
+</resources>
