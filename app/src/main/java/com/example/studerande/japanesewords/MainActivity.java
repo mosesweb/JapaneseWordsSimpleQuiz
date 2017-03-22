@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
+
+                // could send some data to the intent if we want to have category
+                // for more options or something
                 Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, wordTestActivity.class);
                 startActivity(intent);

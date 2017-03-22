@@ -131,9 +131,9 @@ public class wordTestActivity extends AppCompatActivity {
             tw.setText("ALL QUESTIONS ARE DONE!");
         }
     }
-    public Boolean checkAnswer(String jap_romaji)
+    public Boolean checkAnswer(String jap_jap)
     {
-        if(current_word.Romaji == jap_romaji)
+        if(current_word.Japanese == jap_jap)
         {
             return true;
         }
@@ -150,14 +150,14 @@ public class wordTestActivity extends AppCompatActivity {
 
         // put the values from each object into a string array
         String[] wordStringArr = new String[] {
-                mylist.get(0).Romaji,
-                mylist.get(1).Romaji,
-                mylist.get(2).Romaji,
-                mylist.get(3).Romaji,
-                mylist.get(4).Romaji,
-                mylist.get(5).Romaji,
-                mylist.get(6).Romaji,
-                mylist.get(7).Romaji
+                mylist.get(0).Japanese,
+                mylist.get(1).Japanese,
+                mylist.get(2).Japanese,
+                mylist.get(3).Japanese,
+                mylist.get(4).Japanese,
+                mylist.get(5).Japanese,
+                mylist.get(6).Japanese,
+                mylist.get(7).Japanese
         };
 
         Log.d("asd", Integer.toString(list_size));
@@ -179,40 +179,40 @@ public class wordTestActivity extends AppCompatActivity {
         Iterator iterator = hs.iterator();
 
         // new arrayList
-        List<String> myromajilist = new ArrayList<String>();
+        List<String> myjapaneselist = new ArrayList<String>();
 
         // check values
         while (iterator.hasNext()){
             //Log.d("Interactor: ", "Value: "+iterator.next() + " ");
-            myromajilist.add(iterator.next().toString());
+            myjapaneselist.add(iterator.next().toString());
         }
 
         //wordStringArr = hs.toArray(new String[hs.size()]);
-        for (int i = 0; i < myromajilist.size(); i++){
-            Log.i("myromajilist name: ", myromajilist.get(i));
+        for (int i = 0; i < myjapaneselist.size(); i++){
+            Log.i("myjapaneselist name: ", myjapaneselist.get(i));
         }
 
         /*
         //RandomizeArray(wordStringArr);
-        String currobj = myromajilist.remove(0); // remove by index!
-        Collections.shuffle(myromajilist);
-        myromajilist.add(0, currobj);
+        String currobj = myjapaneselist.remove(0); // remove by index!
+        Collections.shuffle(myjapaneselist);
+        myjapaneselist.add(0, currobj);
 */
-        for ( int i = 0;  i < myromajilist.size(); i++){
-            String tempName = myromajilist.get(i);
-            if(tempName.equals(current_word.Romaji))
+        for ( int i = 0;  i < myjapaneselist.size(); i++){
+            String tempName = myjapaneselist.get(i);
+            if(tempName.equals(current_word.Japanese))
             {
-                myromajilist.remove(i);
+                myjapaneselist.remove(i);
             }
         }
 
-        Collections.shuffle(myromajilist);
+        Collections.shuffle(myjapaneselist);
 
         List<String> q_list = new ArrayList<String>();
-        q_list.add(current_word.Romaji);
-        q_list.add(myromajilist.get(0));
-        q_list.add(myromajilist.get(1));
-        q_list.add(myromajilist.get(2));
+        q_list.add(current_word.Japanese);
+        q_list.add(myjapaneselist.get(0));
+        q_list.add(myjapaneselist.get(1));
+        q_list.add(myjapaneselist.get(2));
 
         // shuffle answers
         Collections.shuffle(q_list);
@@ -225,7 +225,7 @@ public class wordTestActivity extends AppCompatActivity {
 
         Log.d("this is my array", "arr: " + Arrays.toString(wordStringArr));
     }
-    public void setTextRomaji(Button btn, String txt)
+    public void setTextJapanese(Button btn, String txt)
     {
         btn.setText(txt);
     }
