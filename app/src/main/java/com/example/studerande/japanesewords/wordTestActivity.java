@@ -59,6 +59,11 @@ public class wordTestActivity extends AppCompatActivity {
         mylist.add(word2);
         mylist.add(word3);
         mylist.add(word4);
+        mylist.add(new word("毎日", "mainichi", "mainichi", "everyday"));
+        mylist.add(new word("今日", "kyou", "kyou", "today"));
+        mylist.add(new word("パソコン", "pasokon", "pasokon", "comupter"));
+        mylist.add(new word("日", "hi", "hi", "day"));
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_test);
@@ -107,19 +112,24 @@ public class wordTestActivity extends AppCompatActivity {
 
     public void getQuestion(int q_num)
     {
-        int whatnumberofquestion = q_num + 1 ;
-        TextView tw_q = (TextView) findViewById(R.id.q_num);
-        tw_q.setText("Question: #" + whatnumberofquestion);
-
-
         TextView tw = (TextView) findViewById(R.id.question_tw);
 
-        current_word = (word) mylist.get(q_num);
-        setRandomOptions();
-        String Q_number = Integer.toString(q_num);
-        //tw_q.setText("asadasd");
-        //tw.setText(Integer.toString(mylist.size()) + " yes");
-        tw.setText(current_word_num +  " : Queston: " + current_word.English + " in Japanese is?");
+        if(q_num != mylist.size()) {
+            int whatnumberofquestion = q_num + 1;
+            TextView tw_q = (TextView) findViewById(R.id.q_num);
+            tw_q.setText("Question: #" + whatnumberofquestion);
+
+            current_word = (word) mylist.get(q_num);
+            setRandomOptions();
+            String Q_number = Integer.toString(q_num);
+            //tw_q.setText("asadasd");
+            //tw.setText(Integer.toString(mylist.size()) + " yes");
+            tw.setText(current_word_num + " : Queston: " + current_word.English + " in Japanese is?");
+        }
+        else
+        {
+            tw.setText("ALL QUESTIONS ARE DONE!");
+        }
     }
     public Boolean checkAnswer(String jap_romaji)
     {
@@ -136,26 +146,21 @@ public class wordTestActivity extends AppCompatActivity {
         Button answer_button3 = (Button) findViewById(R.id.ansr_btn3);
         Button answer_button4 = (Button) findViewById(R.id.ansr_btn4);
 
-        int[] holdnums = new int[] { 1, 2, 3, 4};
-
-        word randomw = mylist.get(0);
-        word randomw2 = mylist.get(1);
-        word randomw3 = mylist.get(2);
-        word randomw4 = mylist.get(3);
-
-
-
-        int first_w = 0;
-        // first word check
+        Integer list_size = mylist.size();
 
         // put the values from each object into a string array
-        String[] wordStringArr = new String[]
-                {       current_word.Romaji,
-                        randomw.Romaji,
-                        randomw2. Romaji,
-                        randomw3.Romaji,
-                        randomw4.Romaji
-                };
+        String[] wordStringArr = new String[] {
+                mylist.get(0).Romaji,
+                mylist.get(1).Romaji,
+                mylist.get(2).Romaji,
+                mylist.get(3).Romaji,
+                mylist.get(4).Romaji,
+                mylist.get(5).Romaji,
+                mylist.get(6).Romaji,
+                mylist.get(7).Romaji
+        };
+
+        Log.d("asd", Integer.toString(list_size));
 
         //List<String> al = new ArrayList<>();
         // use hashmap instead??
@@ -170,28 +175,59 @@ public class wordTestActivity extends AppCompatActivity {
 
         // randomize romaji text
         //RandomizeArray(wordStringArr);
-
-
         // create an iterator
         Iterator iterator = hs.iterator();
 
+        // new arrayList
+        List<String> myromajilist = new ArrayList<String>();
+
         // check values
-        int i = 0;
         while (iterator.hasNext()){
-            Log.d("Interactor: ", "Value: "+iterator.next() + " ");
+            //Log.d("Interactor: ", "Value: "+iterator.next() + " ");
+            myromajilist.add(iterator.next().toString());
         }
 
-        wordStringArr = hs.toArray(new String[hs.size()]);
+        //wordStringArr = hs.toArray(new String[hs.size()]);
+        for (int i = 0; i < myromajilist.size(); i++){
+            Log.i("myromajilist name: ", myromajilist.get(i));
+        }
 
-        RandomizeArray(wordStringArr);
+        /*
+        //RandomizeArray(wordStringArr);
+        String currobj = myromajilist.remove(0); // remove by index!
+        Collections.shuffle(myromajilist);
+        myromajilist.add(0, currobj);
+*/
+        for ( int i = 0;  i < myromajilist.size(); i++){
+            String tempName = myromajilist.get(i);
+            if(tempName.equals(current_word.Romaji))
+            {
+                myromajilist.remove(i);
+            }
+        }
+
+        Collections.shuffle(myromajilist);
+
+        List<String> q_list = new ArrayList<String>();
+        q_list.add(current_word.Romaji);
+        q_list.add(myromajilist.get(0));
+        q_list.add(myromajilist.get(1));
+        q_list.add(myromajilist.get(2));
+
+        // shuffle answers
+        Collections.shuffle(q_list);
 
         // set buttons
-        answer_button1.setText(wordStringArr[0]);
-        answer_button2.setText(wordStringArr[1]);
-        answer_button3.setText(wordStringArr[2]);
-        answer_button4.setText(wordStringArr[3]);
+        answer_button1.setText(q_list.get(0));
+        answer_button2.setText(q_list.get(1));
+        answer_button3.setText(q_list.get(2));
+        answer_button4.setText(q_list.get(3));
 
         Log.d("this is my array", "arr: " + Arrays.toString(wordStringArr));
+    }
+    public void setTextRomaji(Button btn, String txt)
+    {
+        btn.setText(txt);
     }
 
     public static String[] RandomizeArray(String[] array){
