@@ -113,9 +113,9 @@ public class wordTestActivity extends AppCompatActivity {
     public void getQuestion(int q_num)
     {
         TextView tw = (TextView) findViewById(R.id.question_tw);
-
         if(q_num != mylist.size()) {
-            int whatnumberofquestion = q_num + 1;
+            int whatnumberofquestion = 0;
+            whatnumberofquestion = q_num + 1;
             TextView tw_q = (TextView) findViewById(R.id.q_num);
             tw_q.setText("Question: #" + whatnumberofquestion);
 
@@ -124,7 +124,7 @@ public class wordTestActivity extends AppCompatActivity {
             String Q_number = Integer.toString(q_num);
             //tw_q.setText("asadasd");
             //tw.setText(Integer.toString(mylist.size()) + " yes");
-            tw.setText(current_word_num + " : Queston: " + current_word.English + " in Japanese is?");
+            tw.setText(whatnumberofquestion + " : Queston: " + current_word.English + " in Japanese is?");
         }
         else
         {
