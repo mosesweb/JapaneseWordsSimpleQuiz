@@ -1,6 +1,7 @@
 package com.example.studerande.japanesewords;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import java.util.Set;
 
 import static android.R.id.input;
 import static android.R.id.list;
+import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
 public class wordTestActivity extends AppCompatActivity {
     word current_word = new word();
@@ -43,34 +45,20 @@ public class wordTestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        word word = new word();
-        word.English = "test";
-        word.Japanese = "テスト";
-        word.Romaji = "tesuto";
+        wordTestActivity.this.setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        word word2 = new word();
-        word2.English = "(warrior) weapon";
-        word2.Japanese = "武器";
-        word2.Romaji = "buki";
+        mylist.add(new word("山紫水明", "さんしすいめい", "sanshisuimei", "Scenic Beauty",
+                "Mountains being illuminated by the sun in hazy violet color, floods and lakes are pure and clear.\n" +
+                "山, やま, yama - Mountains\n" +
+                "紫, むらさき (murasaki) Violet\n" +
+                "水, みず, (mizu) Water 明, あか・るい, (akarui) Bright\n" +
+                "Together they form this word of a beautiful scene."));
 
-        word word3 = new word();
-        word3.English = "hello";
-        word3.Japanese = "こんにちは";
-        word3.Romaji = "konnichiwa";
-
-        word word4 = new word();
-        word4.English = "what";
-        word4.Japanese = "何";
-        word4.Romaji = "nani";
-
-        mylist.add(word);
-        mylist.add(word2);
-        mylist.add(word3);
-        mylist.add(word4);
-        mylist.add(new word("毎日", "mainichi", "mainichi", "everyday"));
-        mylist.add(new word("今日", "kyou", "kyou", "today"));
-        mylist.add(new word("パソコン", "pasokon", "pasokon", "comupter"));
-        mylist.add(new word("日", "hi", "hi", "day"));
+        mylist.add(new word("複雑多岐", "ふくざつたき", "fukuzatsutaki", "Complex and Wide-Ranging", ""));
+        mylist.add(new word("四当五落", "よんとうごらく", "yontōgoraku", "Sleep four hours and pass, sleep five hours and fail", ""));
+        mylist.add(new word("乾坤一擲", "けんこんいってき", "kenkonitteki", "Play all for nothing", ""));
+        mylist.add(new word("夏炉冬扇", "かろとうせん", "karotousen", "Untimely and useless thing", "When it is summer the fireplace becomes useless, when it is winter the side fan becomes useless. Such is the meaning of this word, because the things is not useful for it's season."));
+        mylist.add(new word("気韻生動", "きいんせいどう", "kiinseidou", "Made with elegance and vitality", "Painting and calligraphic works and such have elegance and character. The work show a dynamic and uplifting feeling made vividly."));
 
         amountofQuestions = mylist.size();
 
@@ -83,7 +71,7 @@ public class wordTestActivity extends AppCompatActivity {
 
        // Toast.makeText(this, word2.Japanese, Toast.LENGTH_SHORT).show();
 
-        final word current_quest_word = word;
+//        final word current_quest_word = word;
 
         // Q 1
         getQuestion(current_word_num);
@@ -126,6 +114,24 @@ public class wordTestActivity extends AppCompatActivity {
             result_textview.setBackgroundResource(R.color.redWrong);
             result_textview.setText(currButton.getText().toString() + " is wrong");
             currButton.setBackgroundResource(R.color.redWrong);
+        }
+
+        TextView description_textview = (TextView) findViewById(R.id.description_textview);
+        // show some info about the word
+        for ( int i = 0;  i < mylist.size(); i++){
+            word tempWord = mylist.get(i);
+            if(tempWord.equals(current_word))
+            {
+                String info_string = tempWord.Japanese + " - " + tempWord.English + "\n";
+                info_string += "Kana Reading:" + tempWord.Reading + "\n";
+                info_string += "Romaji Reading:" + tempWord.Romaji + "\n";
+                if(tempWord.Description != "")
+                {
+                    info_string += tempWord.Description;
+                }
+                description_textview.setText(info_string);
+
+            }
         }
     }
 
@@ -186,7 +192,7 @@ public class wordTestActivity extends AppCompatActivity {
             String Q_number = Integer.toString(q_num);
             //tw_q.setText("asadasd");
             //tw.setText(Integer.toString(mylist.size()) + " yes");
-            tw.setText(whatnumberofquestion + " : Queston: " + current_word.English + " in Japanese is?");
+            tw.setText("Question #" + whatnumberofquestion + ": " + current_word.English);
         }
         else
         {
@@ -203,6 +209,7 @@ public class wordTestActivity extends AppCompatActivity {
             intent.putExtra("RESULT_AMOUNT_OF_Q", amountofQuestions);
 
             // start the result screen activity
+            intent.addFlags(FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
     }
@@ -224,16 +231,17 @@ public class wordTestActivity extends AppCompatActivity {
         Integer list_size = mylist.size();
 
         // put the values from each object into a string array
-        String[] wordStringArr = new String[] {
-                mylist.get(0).Japanese,
-                mylist.get(1).Japanese,
-                mylist.get(2).Japanese,
-                mylist.get(3).Japanese,
-                mylist.get(4).Japanese,
-                mylist.get(5).Japanese,
-                mylist.get(6).Japanese,
-                mylist.get(7).Japanese
-        };
+        String[] wordStringArr = new String[amountofQuestions];
+
+        // what we want to do in the future..
+
+
+        String option_type = "Japanese";
+
+        for(int x = 0; x < wordStringArr.length; x++)
+        {
+            wordStringArr[x] = mylist.get(x).Japanese;
+        }
 
         Log.d("asd", Integer.toString(list_size));
 
@@ -245,6 +253,7 @@ public class wordTestActivity extends AppCompatActivity {
         // add elements to al, including duplicates
         Set<String> hs = new HashSet<>();
         hs.addAll(al);
+        // take away duplicates!
         al.clear();
         al.addAll(hs);
 
@@ -267,12 +276,7 @@ public class wordTestActivity extends AppCompatActivity {
             Log.i("myjapaneselist name: ", myjapaneselist.get(i));
         }
 
-        /*
-        //RandomizeArray(wordStringArr);
-        String currobj = myjapaneselist.remove(0); // remove by index!
-        Collections.shuffle(myjapaneselist);
-        myjapaneselist.add(0, currobj);
-*/
+        // remove the word in question from the myjapaneselist array
         for ( int i = 0;  i < myjapaneselist.size(); i++){
             String tempName = myjapaneselist.get(i);
             if(tempName.equals(current_word.Japanese))
@@ -281,6 +285,7 @@ public class wordTestActivity extends AppCompatActivity {
             }
         }
 
+        // shuffle myjapaneselist
         Collections.shuffle(myjapaneselist);
 
         List<String> q_list = new ArrayList<String>();

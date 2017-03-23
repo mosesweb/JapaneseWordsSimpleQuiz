@@ -32,9 +32,14 @@ public class results_activity extends AppCompatActivity {
         }
         if(procent_result_float >= 50)
         {
-            scoremsg = "Well, 50% or over, that's what it is a milestone!\n" +
+            scoremsg = "Well, 50% or over, that's a milestone!\n" +
                     "However, I recommend to take the test again and learn more!";
             encouragement_image.setVisibility(View.VISIBLE);
+        }
+        if(procent_result_float > 60)
+        {
+            scoremsg = "Great job! Not bad!\n" +
+                    "Keep it up.";
         }
         if(procent_result_float > 70)
         {
