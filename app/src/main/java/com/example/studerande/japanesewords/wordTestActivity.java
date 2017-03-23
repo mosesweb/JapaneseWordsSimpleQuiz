@@ -31,6 +31,13 @@ public class wordTestActivity extends AppCompatActivity {
     word current_word = new word();
     int current_word_num = 0;
     List<word> mylist = new ArrayList<word>();
+    public int amountofQuestions = 0;
+    public int amountofMistakes = 0;
+    public int amountofCorrect = 0;
+    public boolean currCorrect = false;
+    public boolean currMistake = false;
+    public int onClicksCount = 0;
+
 
 
     @Override
@@ -65,6 +72,7 @@ public class wordTestActivity extends AppCompatActivity {
         mylist.add(new word("パソコン", "pasokon", "pasokon", "comupter"));
         mylist.add(new word("日", "hi", "hi", "day"));
 
+        amountofQuestions = mylist.size();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_test);
@@ -82,6 +90,7 @@ public class wordTestActivity extends AppCompatActivity {
     }
     public void onClick(View v)
     {
+        onClicksCount++;
         Button b = (Button)v;
         Button currButton = ((Button) v);
 
@@ -96,6 +105,11 @@ public class wordTestActivity extends AppCompatActivity {
         if(checkAnswer(the_btn_answer))
         {
             res = "correct!";
+
+            // user clicked correct answer on first try!
+            if(onClicksCount == 1) {
+                currCorrect = true;
+            }
           //  Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
             current_word_num++;
             Button nextbtn = (Button) findViewById(R.id.next_button);
@@ -118,6 +132,12 @@ public class wordTestActivity extends AppCompatActivity {
 
     public void nextQuestion(View v)
     {
+        if(currCorrect == true)
+        {
+            amountofCorrect++;
+        }
+        currCorrect = false;
+        onClicksCount = 0;
         getQuestion(current_word_num);
         setRandomOptions();
         Button nextbtn = (Button) findViewById(R.id.next_button);
@@ -163,8 +183,9 @@ public class wordTestActivity extends AppCompatActivity {
         }
         else
         {
+            // @TODO send more variables with procent and numbers of amount of correct and print out the message in the result activity
             tw.setText("ALL QUESTIONS ARE DONE!");
-            String myresult = "hey this is my result!";
+            String myresult = "Well done!\n" + amountofCorrect + " correct answers! of " + amountofQuestions;
             Intent intent = new Intent(getBaseContext(), results_activity.class);
             intent.putExtra("RESULT_IS", myresult);
             startActivity(intent);
