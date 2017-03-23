@@ -111,7 +111,6 @@ public class wordTestActivity extends AppCompatActivity {
                 currCorrect = true;
             }
           //  Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
-            current_word_num++;
             Button nextbtn = (Button) findViewById(R.id.next_button);
             nextbtn.setText("NEXT");
             nextbtn.setEnabled(true);
@@ -132,10 +131,18 @@ public class wordTestActivity extends AppCompatActivity {
 
     public void nextQuestion(View v)
     {
+        current_word_num++;
         if(currCorrect == true)
         {
             amountofCorrect++;
         }
+        // Score
+
+        TextView howmanycorrect_textview = (TextView) findViewById(R.id.howmanycorrect);
+        float procent_result = ((float) amountofCorrect / current_word_num);
+        String in_procent =  Math.round(100.0 * procent_result) + "%";
+        howmanycorrect_textview.setText("Accuracy: " + in_procent);
+
         currCorrect = false;
         onClicksCount = 0;
         getQuestion(current_word_num);
@@ -183,11 +190,19 @@ public class wordTestActivity extends AppCompatActivity {
         }
         else
         {
-            // @TODO send more variables with procent and numbers of amount of correct and print out the message in the result activity
             tw.setText("ALL QUESTIONS ARE DONE!");
-            String myresult = "Well done!\n" + amountofCorrect + " correct answers! of " + amountofQuestions;
+
+            // calucate correct procent
+            float procent_result = ((float) amountofCorrect / amountofQuestions);
+            String in_procent =  Math.round(100.0 * procent_result) + "%";
+
             Intent intent = new Intent(getBaseContext(), results_activity.class);
-            intent.putExtra("RESULT_IS", myresult);
+            intent.putExtra("RESULT_PROCENT", in_procent);
+            intent.putExtra("RESULT_PROCENT_FLOAT", procent_result);
+            intent.putExtra("RESULT_CORRECT", amountofCorrect);
+            intent.putExtra("RESULT_AMOUNT_OF_Q", amountofQuestions);
+
+            // start the result screen activity
             startActivity(intent);
         }
     }
