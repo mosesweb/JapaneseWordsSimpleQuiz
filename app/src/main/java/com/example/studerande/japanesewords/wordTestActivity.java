@@ -1,6 +1,7 @@
 package com.example.studerande.japanesewords;
 
 import android.content.Intent;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,10 +70,10 @@ public class wordTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_word_test);
 
         TextView tw = (TextView) findViewById(R.id.question_tw);
-        TextView tw_q = (TextView) findViewById(R.id.q_num);
-        tw_q.setText("Question: #1");
+        // TextView tw_q = (TextView) findViewById(R.id.q_num);
+       // tw_q.setText("Question: #1");
 
-        Toast.makeText(this, word2.Japanese, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, word2.Japanese, Toast.LENGTH_SHORT).show();
 
         final word current_quest_word = word;
 
@@ -82,22 +83,36 @@ public class wordTestActivity extends AppCompatActivity {
     public void onClick(View v)
     {
         Button b = (Button)v;
+        Button currButton = ((Button) v);
+
         String the_btn_answer = b.getText().toString();
         String res = "";
+        TextView result_textview = (TextView) findViewById(R.id.result_text);
+
+        currButton.setBackgroundResource(R.color.greenCorrect);
+        String buttonText = ((Button) v).getText().toString();
+        //Toast.makeText(this, buttonText, Toast.LENGTH_LONG).show();
+
         if(checkAnswer(the_btn_answer))
         {
             res = "correct!";
-            Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
             current_word_num++;
             Button nextbtn = (Button) findViewById(R.id.next_button);
             nextbtn.setText("NEXT");
             nextbtn.setEnabled(true);
 
+            result_textview.setBackgroundResource(R.color.greenCorrect);
+            result_textview.setText(current_word.Japanese + " is correct");
+
         }
         else
         {
             res = "wrong!";
-            Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
+            result_textview.setBackgroundResource(R.color.redWrong);
+            result_textview.setText(currButton.getText().toString() + " is wrong");
+            currButton.setBackgroundResource(R.color.redWrong);
         }
     }
 
@@ -108,7 +123,27 @@ public class wordTestActivity extends AppCompatActivity {
         Button nextbtn = (Button) findViewById(R.id.next_button);
         nextbtn.setText("ANSWER");
         nextbtn.setEnabled(false);
+        resetAllButtons();
     }
+    public void resetAllButtons()
+    {
+        Button btn1 = (Button) findViewById(R.id.ansr_btn1);
+        Button btn2 = (Button) findViewById(R.id.ansr_btn2);
+        Button btn3 = (Button) findViewById(R.id.ansr_btn3);
+        Button btn4 = (Button) findViewById(R.id.ansr_btn4);
+        btn1.setBackgroundResource(R.color.whiteDef);
+        btn2.setBackgroundResource(R.color.whiteDef);
+        btn3.setBackgroundResource(R.color.whiteDef);
+        btn4.setBackgroundResource(R.color.whiteDef);
+
+        TextView result_textview = (TextView) findViewById(R.id.result_text);
+        result_textview.setText("Awaiting your answer...");
+        result_textview.setBackgroundResource(R.color.whiteDef);
+
+        TextView description_textview = (TextView) findViewById(R.id.description_textview);
+        description_textview.setText("");
+    }
+
 
     public void getQuestion(int q_num)
     {
@@ -116,8 +151,8 @@ public class wordTestActivity extends AppCompatActivity {
         if(q_num != mylist.size()) {
             int whatnumberofquestion = 0;
             whatnumberofquestion = q_num + 1;
-            TextView tw_q = (TextView) findViewById(R.id.q_num);
-            tw_q.setText("Question: #" + whatnumberofquestion);
+           // TextView tw_q = (TextView) findViewById(R.id.q_num);
+            // tw_q.setText("Question: #" + whatnumberofquestion);
 
             current_word = (word) mylist.get(q_num);
             setRandomOptions();
@@ -129,6 +164,10 @@ public class wordTestActivity extends AppCompatActivity {
         else
         {
             tw.setText("ALL QUESTIONS ARE DONE!");
+            String myresult = "hey this is my result!";
+            Intent intent = new Intent(getBaseContext(), results_activity.class);
+            intent.putExtra("RESULT_IS", myresult);
+            startActivity(intent);
         }
     }
     public Boolean checkAnswer(String jap_jap)

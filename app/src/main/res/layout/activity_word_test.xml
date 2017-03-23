@@ -12,35 +12,24 @@
     <TextView
         android:id="@+id/question_tw"
         android:layout_width="0dp"
-        android:layout_height="105dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        android:textColor="#717171"
-        android:padding="20px"
-        android:background="#EAEAEA"
+        android:layout_height="wrap_content"
+        android:background="@color/whiteDef"
         android:ellipsize="none"
-        android:scrollHorizontally="false"
         android:ems="10"
         android:maxLines="100"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
-
-    <TextView
-        android:id="@+id/q_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:padding="40px"
+        android:scrollHorizontally="false"
         android:text="TextView"
-        android:layout_marginEnd="17dp"
+        android:textColor="#717171"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/question_tw"
-        app:layout_constraintRight_toRightOf="@+id/question_tw"
-        android:layout_marginRight="17dp" />
+        tools:layout_constraintTop_creator="1"
+        />
 
     <Button
         android:id="@+id/ansr_btn3"
@@ -54,7 +43,8 @@
         app:layout_constraintBottom_toTopOf="@+id/ansr_btn4"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="12dp"
-        android:layout_marginRight="16dp" />>
+        android:layout_marginRight="16dp"
+        android:background="@color/whiteDef"/>
 
     <Button
         android:id="@+id/ansr_btn2"
@@ -67,7 +57,8 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/ansr_btn4"
         tools:layout_constraintBaseline_creator="1"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/ansr_btn1" />
+        app:layout_constraintLeft_toLeftOf="@+id/ansr_btn1"
+        android:background="@color/whiteDef"/>
 
     <Button
         android:id="@+id/ansr_btn4"
@@ -81,7 +72,8 @@
         app:layout_constraintRight_toRightOf="@+id/ansr_btn3"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="80dp"
-        app:layout_constraintLeft_toLeftOf="@+id/ansr_btn3" />
+        app:layout_constraintLeft_toLeftOf="@+id/ansr_btn3"
+        android:background="@color/whiteDef"/>
 
     <Button
         android:id="@+id/ansr_btn1"
@@ -99,26 +91,26 @@
         android:layout_marginBottom="12dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="14dp" />
+        android:layout_marginRight="14dp"
+        android:background="@color/whiteDef"/>
 
     <Button
         android:id="@+id/next_button"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
+        android:layout_width="382dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
         android:onClick="nextQuestion"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1" />
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/result_text"
-        android:layout_width="0dp"
-        android:layout_height="79dp"
+        android:layout_width="382dp"
+        android:layout_height="90dp"
         android:text="RESULTS"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -127,6 +119,21 @@
         app:layout_constraintTop_toBottomOf="@+id/question_tw"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:padding="20px"
+        android:gravity="center"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/description_textview"
+        android:layout_width="382dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_text"
+        tools:text="text here" />
 
 </android.support.constraint.ConstraintLayout>
