@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "25.0.1"
     defaultConfig {
-        applicationId "com.example.studerande.japanesewords"
+        applicationId "com.kengoweb.studerande.japanesewords"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1

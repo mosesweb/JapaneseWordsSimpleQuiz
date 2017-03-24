@@ -1,4 +1,4 @@
-package com.example.studerande.japanesewords;
+package com.kengoweb.studerande.japanesewords;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

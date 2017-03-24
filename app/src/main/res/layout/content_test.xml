@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.studerande.japanesewords.testActivity"
+    tools:context="com.kengoweb.studerande.japanesewords.testActivity"
     tools:showIn="@layout/activity_test">
 
 </android.support.constraint.ConstraintLayout>

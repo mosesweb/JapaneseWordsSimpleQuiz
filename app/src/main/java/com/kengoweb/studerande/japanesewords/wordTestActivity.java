@@ -1,33 +1,24 @@
-package com.example.studerande.japanesewords;
+package com.kengoweb.studerande.japanesewords;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.provider.CalendarContract;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 import java.util.Set;
 
-import static android.R.id.input;
-import static android.R.id.list;
 import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
 public class wordTestActivity extends AppCompatActivity {

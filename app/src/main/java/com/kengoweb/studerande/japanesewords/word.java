@@ -1,4 +1,4 @@
-package com.example.studerande.japanesewords;
+package com.kengoweb.studerande.japanesewords;
 
 /**
  * Created by Studerande on 2017-03-20.

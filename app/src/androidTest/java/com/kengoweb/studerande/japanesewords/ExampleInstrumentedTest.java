@@ -1,4 +1,4 @@
-package com.example.studerande.japanesewords;
+package com.kengoweb.studerande.japanesewords;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
