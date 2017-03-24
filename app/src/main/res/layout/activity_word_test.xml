@@ -129,7 +129,8 @@
         tools:layout_constraintLeft_creator="1"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/description_textview"
@@ -149,7 +150,10 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
-        tools:text="text here" />
+        tools:text="text here"
+        android:maxLines = "4"
+        android:scrollbars = "vertical"
+        />
 
     <TextView
         android:id="@+id/howmanycorrect"

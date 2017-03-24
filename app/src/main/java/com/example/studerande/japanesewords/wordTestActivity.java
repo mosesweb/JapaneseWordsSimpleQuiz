@@ -6,6 +6,7 @@ import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -90,6 +91,7 @@ public class wordTestActivity extends AppCompatActivity {
         String buttonText = ((Button) v).getText().toString();
         //Toast.makeText(this, buttonText, Toast.LENGTH_LONG).show();
 
+
         if(checkAnswer(the_btn_answer))
         {
             res = "correct!";
@@ -97,6 +99,14 @@ public class wordTestActivity extends AppCompatActivity {
             // user clicked correct answer on first try!
             if(onClicksCount == 1) {
                 currCorrect = true;
+
+                // exception for first question
+                    int curr_word_val = current_word_num + 1;
+                    int correct_amountofcorrect = amountofCorrect + 1;
+                    TextView howmanycorrect_textview = (TextView) findViewById(R.id.howmanycorrect);
+                    float procent_result = ((float) correct_amountofcorrect /  curr_word_val);
+                    String in_procent = Math.round(100.0 * procent_result) + "%";
+                    howmanycorrect_textview.setText("Accuracy: " + in_procent);
             }
           //  Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
             Button nextbtn = (Button) findViewById(R.id.next_button);
@@ -106,35 +116,48 @@ public class wordTestActivity extends AppCompatActivity {
             result_textview.setBackgroundResource(R.color.greenCorrect);
             result_textview.setText(current_word.Japanese + " is correct");
 
+            TextView description_textview = (TextView) findViewById(R.id.description_textview);
+            // show some info about the word
+            for ( int i = 0;  i < mylist.size(); i++){
+                word tempWord = mylist.get(i);
+                if(tempWord.equals(current_word))
+                {
+                    String info_string = tempWord.Japanese + " - " + tempWord.English + "\n";
+                    info_string += "Kana Reading: " + tempWord.Reading + "\n";
+                    info_string += "Romaji Reading: " + tempWord.Romaji + "\n";
+                    if(tempWord.Description != "")
+                    {
+                        info_string += "\n" + tempWord.Description;
+                    }
+                    description_textview.setText(info_string);
+                    description_textview.setMovementMethod(new ScrollingMovementMethod());
+
+
+                }
+            }
         }
         else
         {
+            // wrong on first try
+            if(onClicksCount == 1) {
+                currCorrect = false;
+
+                // exception for first question
+                int curr_word_val = current_word_num + 1;
+                int correct_amountofcorrect = amountofCorrect;
+                TextView howmanycorrect_textview = (TextView) findViewById(R.id.howmanycorrect);
+                float procent_result = ((float) correct_amountofcorrect /  curr_word_val);
+                String in_procent = Math.round(100.0 * procent_result) + "%";
+                howmanycorrect_textview.setText("Accuracy: " + in_procent);
+            }
+
             res = "wrong!";
            // Toast.makeText(wordTestActivity.this, res, Toast.LENGTH_SHORT).show();
             result_textview.setBackgroundResource(R.color.redWrong);
             result_textview.setText(currButton.getText().toString() + " is wrong");
             currButton.setBackgroundResource(R.color.redWrong);
         }
-
-        TextView description_textview = (TextView) findViewById(R.id.description_textview);
-        // show some info about the word
-        for ( int i = 0;  i < mylist.size(); i++){
-            word tempWord = mylist.get(i);
-            if(tempWord.equals(current_word))
-            {
-                String info_string = tempWord.Japanese + " - " + tempWord.English + "\n";
-                info_string += "Kana Reading:" + tempWord.Reading + "\n";
-                info_string += "Romaji Reading:" + tempWord.Romaji + "\n";
-                if(tempWord.Description != "")
-                {
-                    info_string += tempWord.Description;
-                }
-                description_textview.setText(info_string);
-
-            }
-        }
     }
-
     public void nextQuestion(View v)
     {
         current_word_num++;
@@ -142,13 +165,6 @@ public class wordTestActivity extends AppCompatActivity {
         {
             amountofCorrect++;
         }
-        // Score
-
-        TextView howmanycorrect_textview = (TextView) findViewById(R.id.howmanycorrect);
-        float procent_result = ((float) amountofCorrect / current_word_num);
-        String in_procent =  Math.round(100.0 * procent_result) + "%";
-        howmanycorrect_textview.setText("Accuracy: " + in_procent);
-
         currCorrect = false;
         onClicksCount = 0;
         getQuestion(current_word_num);
@@ -305,6 +321,15 @@ public class wordTestActivity extends AppCompatActivity {
 
         Log.d("this is my array", "arr: " + Arrays.toString(wordStringArr));
     }
+    public void updateScore()
+    {
+        // Score
+        TextView howmanycorrect_textview = (TextView) findViewById(R.id.howmanycorrect);
+        float procent_result = ((float) amountofCorrect / current_word_num);
+        String in_procent =  Math.round(100.0 * procent_result) + "%";
+        howmanycorrect_textview.setText("Accuracy: " + in_procent);
+    }
+
     public void setTextJapanese(Button btn, String txt)
     {
         btn.setText(txt);
