@@ -2,6 +2,7 @@ package com.kengoweb.studerande.japanesewords;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -63,6 +64,9 @@ public class wordTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_word_test);
 
         TextView tw = (TextView) findViewById(R.id.question_tw);
+        TextView description_text = (TextView) findViewById(R.id.description_textview);
+
+
         // TextView tw_q = (TextView) findViewById(R.id.q_num);
        // tw_q.setText("Question: #1");
 
