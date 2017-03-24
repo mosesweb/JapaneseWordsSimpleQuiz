@@ -7,7 +7,7 @@ android {
         applicationId "com.kengoweb.studerande.japanesewords"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
+        versionCode 1.1
         versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
