@@ -55,6 +55,11 @@ public class wordTestActivity extends AppCompatActivity {
                 "水, みず, (mizu) Water 明, あか・るい, (akarui) Bright\n" +
                 "Together they form this word of a beautiful scene."));
 
+        mylist.add(new word("不眠不休", "ふみんふきゅう", "fuminfukyuu", "without sleep or rest", ""));
+        mylist.add(new word("花鳥風月", "かちょうふうげつ", "kachoufuugetsu", "Beauties of Nature", ""));
+        mylist.add(new word("被害妄想", "ひがいもうそう", "higaimousou", "Persecution Complex", ""));
+        mylist.add(new word("土崩瓦解", "どほうがかい", "dohougakai", "Complete Collapse", "Since roof titles shatters if the ground collapses, it is beyond repair when the ground breaks.\n"));
+        mylist.add(new word("独立独歩", "どくりつどっぽ", "dokuritsudoppo", "Self-Reliance", "One who takes himself through the road ahead by his own power without relying on others. One who without influences from others takes decisions by himself and acts just as he believes alone."));
         mylist.add(new word("複雑多岐", "ふくざつたき", "fukuzatsutaki", "Complex and Wide-Ranging", ""));
         mylist.add(new word("四当五落", "よんとうごらく", "yontōgoraku", "Sleep four hours and pass, sleep five hours and fail", ""));
         mylist.add(new word("乾坤一擲", "けんこんいってき", "kenkonitteki", "Play all for nothing", ""));
@@ -186,7 +191,7 @@ public class wordTestActivity extends AppCompatActivity {
         btn4.setBackgroundResource(R.color.whiteDef);
 
         TextView result_textview = (TextView) findViewById(R.id.result_text);
-        result_textview.setText("Awaiting your answer...");
+        result_textview.setText((amountofQuestions - current_word_num) + " words left. Awaiting your next answer...");
         result_textview.setBackgroundResource(R.color.whiteDef);
 
         TextView description_textview = (TextView) findViewById(R.id.description_textview);
