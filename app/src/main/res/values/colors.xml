@@ -6,8 +6,5 @@
     <color name="greenCorrect">#8cd88c</color>
     <color name="redWrong">#d88c8c</color>
     <color name="whiteDef">#ffffff</color>
-
-
-
-
+    <color name="greyButton">#D6D7D7</color>
 </resources>
