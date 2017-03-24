@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Interesting Kanji Compounds Quiz</string>
     <string name="title_activity_test">testActivity</string>
+    <string name="welcome_str">Welcome to the Interesting Kanji Compounds App.<br />
+    Take the quiz to test your skills!
+    </string>
 </resources>
