@@ -13,36 +13,30 @@
         android:id="@+id/question_tw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="-2dp"
         android:background="@color/whiteDef"
         android:ellipsize="none"
         android:ems="10"
         android:maxLines="100"
-        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
         android:paddingLeft="30sp"
         android:paddingRight="30sp"
-        android:paddingBottom="10sp"
+        android:paddingTop="10sp"
         android:scrollHorizontally="false"
         android:text="Question"
         android:textColor="#717171"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        android:textStyle="bold"/>
+        tools:layout_constraintTop_creator="1" />
 
     <Button
         android:id="@+id/ansr_btn3"
         android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="12dp"
         android:background="@color/whiteDef"
         android:onClick="onClick"
         android:text="Button"
@@ -51,7 +45,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/ansr_btn1"
         android:layout_marginRight="3dp"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="6dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp" />
 
@@ -68,10 +62,10 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintBottom_creator="1"
         android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
+        android:layout_marginRight="6dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="13dp" />
 
     <Button
         android:id="@+id/ansr_btn4"
@@ -86,7 +80,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/ansr_btn2"
         tools:layout_constraintBaseline_creator="1"
         android:layout_marginRight="3dp"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="6dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp" />
 
@@ -94,7 +88,7 @@
         android:id="@+id/ansr_btn1"
         android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="11dp"
         android:background="@color/whiteDef"
         android:onClick="onClick"
         android:text="Button"
@@ -103,7 +97,7 @@
         app:layout_constraintLeft_toRightOf="@+id/ansr_btn3"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
+        android:layout_marginRight="6dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp" />
 
@@ -133,35 +127,28 @@
         android:id="@+id/result_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:padding="22sp"
         android:text="Awaiting your answer..."
         android:textAlignment="center"
         android:textSize="21sp"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_tw"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        app:layout_constraintTop_toBottomOf="@+id/question_tw" />
 
     <TextView
         android:id="@+id/howmanycorrect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Score"
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/result_text"
-        tools:layout_constraintLeft_creator="1" />
+        tools:layout_editor_absoluteY="120dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/result_text"
+
+        />
 
     <TextView
         android:id="@+id/description_textview"

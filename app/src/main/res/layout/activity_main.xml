@@ -57,10 +57,39 @@
         android:paddingRight="30dp"
         android:text="@string/welcome_str"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="34dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/study_button">
+
+        <RadioButton
+            android:id="@+id/engAndJap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="English and Japanese"
+            android:textSize="21sp" />
+
+        <RadioButton
+            android:id="@+id/JapAndEng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.13"
+            android:checked="false"
+            android:text="Japanese and English"
+            android:textSize="21sp" />
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

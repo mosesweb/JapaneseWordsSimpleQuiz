@@ -256,7 +256,7 @@ public class wordTestActivity extends AppCompatActivity {
 
         for(int x = 0; x < wordStringArr.length; x++)
         {
-            wordStringArr[x] = mylist.get(x).Japanese;
+            wordStringArr[x] = mylist.get(x).English;
         }
 
         Log.d("asd", Integer.toString(list_size));
@@ -295,7 +295,7 @@ public class wordTestActivity extends AppCompatActivity {
         // remove the word in question from the myjapaneselist array
         for ( int i = 0;  i < myjapaneselist.size(); i++){
             String tempName = myjapaneselist.get(i);
-            if(tempName.equals(current_word.Japanese))
+            if(tempName.equals(current_word.English))
             {
                 myjapaneselist.remove(i);
             }
@@ -305,7 +305,7 @@ public class wordTestActivity extends AppCompatActivity {
         Collections.shuffle(myjapaneselist);
 
         List<String> q_list = new ArrayList<String>();
-        q_list.add(current_word.Japanese);
+        q_list.add(current_word.English);
         q_list.add(myjapaneselist.get(0));
         q_list.add(myjapaneselist.get(1));
         q_list.add(myjapaneselist.get(2));
